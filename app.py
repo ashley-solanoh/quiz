@@ -121,7 +121,7 @@ for i in range (0,len(questions)):
     
     for x in range (0,len(choices)):
 
-        print (" " + str(x + 1) + ")"+ choices[x])
+        print (" " + str(x + 1) + ") "+ choices[x])
  
     userAnswer = input("> ")
 
