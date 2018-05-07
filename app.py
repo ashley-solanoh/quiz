@@ -23,11 +23,18 @@ def getDifficulties():
     return vDifficulties    
 
 
-def getQuestions(difficulties,topics):
+def getQuestions(topics):
  
     vQuestions = ["When did WW1 start?", "In which year was Simon Bolivar born?", "Who did the British beat in the last Napolionic war?","In what year did India gain its independence from Britain?","What was the name of the last Tsar?"]
 
     return vQuestions    
+
+
+def getChoices(question, difficulty):
+ 
+    vChoices = ["1917", "666", "1914", "1914.9"]
+
+    return vChoices    
 
 
 confirm = True
@@ -100,13 +107,22 @@ print ("Pick a Difficulty")
 for i in range (0,len(difficulties)):
     print ("  - " + difficulties[i])
 
-userDifficulties = input("> ")
+userDifficulty = input("> ")
 
-questions = getQuestions(userTopic, userDifficulties)
+questions = getQuestions(userTopic)
 print("")
+
 
 for i in range (0,len(questions)):
 
+    choices = getChoices(questions[i], userDifficulty)
+
     print(questions[i])
+    
+    for x in range (0,len(choices)):
+
+        print (" " + str(x + 1) + ")"+ choices[x])
+ 
     userAnswer = input("> ")
+
     print("")
