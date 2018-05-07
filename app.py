@@ -10,6 +10,12 @@ def saveAccount( pAccName, pName, pYearG,pAge,pPassW ):
     accountFile.write ("Password = " + pPassW + "\n")
     accountFile.close()
 
+def getTopics():
+ 
+    vTopics = ["history", "science", "maths"]
+
+    return vTopics    
+
 
 confirm = True
 name = input("What is your name?  ")
@@ -39,16 +45,7 @@ print ("all done!")
 quizData = (accName + "Stats.txt")
 
 
-saveAccount( accName, name, yearG, age, passW ):
-#save the account into a file  
-accountFile = open(fileName, "w")
-accountFile.write ("Account Name = " + accName + "\n")
-accountFile.write ("Name = " + name + "\n")
-accountFile.write ("Year Group  = " + yearG + "\n")
-accountFile.write ("Age = " + age + "\n")
-accountFile.write ("Password = " + passW + "\n")
-accountFile.close()
-
+saveAccount( accName, name, yearG, age, passW )
 
 quizFile = open(quizData, "w")
 quizFile.write (accName + "’s quizzes " + "\n")  
@@ -88,3 +85,5 @@ quizFile.write ("      Easy: N/A" + "\n")
 quizFile.write ("      Medium: N/A" + "\n")
 quizFile.write ("      Hard: N/A" + "\n")
 quizFile.close()
+
+topics = getTopics()
