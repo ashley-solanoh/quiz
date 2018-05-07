@@ -1,3 +1,13 @@
+class Question():
+     def __init__(self,pId,pQuestion):
+        '''
+        Constructor
+        '''
+        self.id = pId
+        self.question = pQuestion
+
+
+
 def saveAccount( pAccName, pName, pYearG,pAge,pPassW ):
 
     fileName = (pAccName + ".txt")
@@ -31,22 +41,39 @@ def getQuestions(topic):
     questionsFile = open("questions.csv", "r") 
     for line in questionsFile: 
         fields = line.split(';')
+
         vTopic = fields[0]
         vQuestionID = fields[1]
-        
-
+        vQuestion = fields[2]
  
         if topic == vTopic:
-            vQuestions.append(fields[2])
+            newQuestion = Question(vQuestionID, vQuestion)
+            vQuestions.append(newQuestion)
 
     return vQuestions    
 
 
-def getChoices(question, difficulty):
+def getChoices(pQuestionID, pDifficulty):
  
-    vChoices = ["1917", "666", "1914", "1914.9"]
+    moreChoice = True
+    vChoices = []
 
-    return vChoices    
+    choicesFile = open("choices.csv", "r")
+    for line in choicesFile:
+        fields = line.split(';')
+        vQuestionID = fields[0]
+        vChoice = fields[1]
+
+        if (vQuestionID == pQuestionID):
+            
+            vChoices.append(vChoice)
+        
+        if (pDifficulty == "easy"):
+            return vChoices[0,2]    
+        if (pDifficulty == "medium"):
+            return vChoices[0,3]    
+        return vChoices    
+
 
 
 confirm = True
@@ -127,9 +154,10 @@ print("")
 
 for i in range (0,len(questions)):
 
-    choices = getChoices(questions[i], userDifficulty)
+    aQuestion = questions[i]
+    choices = getChoices(aQuestion.id, userDifficulty)
 
-    print(questions[i])
+    print(aQuestion.question)
     
     for x in range (0,len(choices)):
 
