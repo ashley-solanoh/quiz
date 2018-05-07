@@ -23,9 +23,21 @@ def getDifficulties():
     return vDifficulties    
 
 
-def getQuestions(topics):
+def getQuestions(topic):
+
+    vQuestions = []
+    
+
+    questionsFile = open("questions.csv", "r") 
+    for line in questionsFile: 
+        fields = line.split(';')
+        vTopic = fields[0]
+        vQuestionID = fields[1]
+        
+
  
-    vQuestions = ["When did WW1 start?", "In which year was Simon Bolivar born?", "Who did the British beat in the last Napolionic war?","In what year did India gain its independence from Britain?","What was the name of the last Tsar?"]
+        if topic == vTopic:
+            vQuestions.append(fields[2])
 
     return vQuestions    
 
