@@ -16,6 +16,19 @@ def getTopics():
 
     return vTopics    
 
+def getDifficulties():
+ 
+    vDifficulties = ["easy", "medium", "hard"]
+
+    return vDifficulties    
+
+
+def getQuestions(difficulties,topics):
+ 
+    vQuestions = ["When did WW1 start?", "In which year was Simon Bolivar born?", "Who did the British beat in the last Napolionic war?","In what year did India gain its independence from Britain?","What was the name of the last Tsar?"]
+
+    return vQuestions    
+
 
 confirm = True
 name = input("What is your name?  ")
@@ -38,10 +51,6 @@ if passC != passW:
       confirm = Ture 
 
 #save all variables on external file
-print ("all done!") 
-
-
-
 quizData = (accName + "Stats.txt")
 
 
@@ -52,13 +61,6 @@ quizFile.write (accName + "’s quizzes " + "\n")
 quizFile.write ("\n")
 
 
-quizFile.write ("    Science:" + "\n")
-quizFile.write ("      Easy: N/A" + "\n")
-quizFile.write ("      Medium: N/A" + "\n")
-quizFile.write ("      Hard: N/A" + "\n")
-quizFile.write ("\n")
-
-
 quizFile.write ("    History:" + "\n")
 quizFile.write ("      Easy: N/A" + "\n")
 quizFile.write ("      Medium: N/A" + "\n")
@@ -66,24 +68,45 @@ quizFile.write ("      Hard: N/A" + "\n")
 quizFile.write ("\n")
 
 
-quizFile.write ("    Geography:" + "\n")
+quizFile.write ("    Science:" + "\n")
 quizFile.write ("      Easy: N/A" + "\n")
 quizFile.write ("      Medium: N/A" + "\n")
 quizFile.write ("      Hard: N/A" + "\n")
 quizFile.write ("\n")
 
 
-quizFile.write ("    Common Sense:" + "\n")
+quizFile.write ("    Maths:" + "\n")
 quizFile.write ("      Easy: N/A" + "\n")
 quizFile.write ("      Medium: N/A" + "\n")
 quizFile.write ("      Hard: N/A" + "\n")
 quizFile.write ("\n")
-
-
-quizFile.write ("   Music :" + "\n")
-quizFile.write ("      Easy: N/A" + "\n")
-quizFile.write ("      Medium: N/A" + "\n")
-quizFile.write ("      Hard: N/A" + "\n")
 quizFile.close()
 
 topics = getTopics()
+
+print ("Pick a topic")
+
+for i in range (0,len(topics)):
+    print ("  - " + topics[i])
+
+userTopic = input("> ")
+
+print("")
+
+difficulties = getDifficulties()
+
+print ("Pick a Difficulty")
+
+for i in range (0,len(difficulties)):
+    print ("  - " + difficulties[i])
+
+userDifficulties = input("> ")
+
+questions = getQuestions(userTopic, userDifficulties)
+print("")
+
+for i in range (0,len(questions)):
+
+    print(questions[i])
+    userAnswer = input("> ")
+    print("")
