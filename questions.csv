@@ -1,16 +1,16 @@
-Topic;QuestionId;question
-history;001;When did WW1 start?
-history;002;In which year was Simon Bolivar born?
-history;003;Who did the British beat in the last Napolionic war?
-history;004;In what year did India gain its independence from Britain?
-history;005;What was the name of the last Tsar?
-science;006;What process do plants mainly do during the day?
-science;007;What formula relates force, mass and acceleration?
-science;008;What is the gravitational field strength of earth?
-science;009;What is the function of a ribosome?
-science;010;Why are most atoms neutral?
-maths;011;What is the sign for pi?
-maths;012;What is 1+1?
-maths;013;What angle is less thatn 90 degrees?
-maths;014;What are the interior angles of octagon?
-maths;015;what is the value of cosine(0)?
+Topic;QuestionId;question;Answer
+history;001;When did WW1 start?;1
+history;002;In which year was Simon Bolivar born?;2
+history;003;Who did the British beat in the last Napolionic war?;1
+history;004;In what year did India gain its independence from Britain?;2
+history;005;What was the name of the last Tsar?;4
+science;006;What process do plants mainly do during the day?;2
+science;007;What formula relates force, mass and acceleration?;1
+science;008;What is the gravitational field strength of earth?;1
+science;009;What is the function of a ribosome?;3
+science;010;Why are most atoms neutral?;2
+maths;011;What is the sign for pi?;1
+maths;012;What is 1+1?;1
+maths;013;What angle is less that 90 degrees?;2
+maths;014;What are the interior angles of octagon?;4
+maths;015;what is the value of cosine(0)?;1
