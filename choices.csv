@@ -1,61 +1,61 @@
-QuestionID;Choice
-001;1949
-001;666
-001;1917
-001;1914
-002;1783
-002;1666
-002;1914
-002;0 AD
-003;France
-003;Belgium
-003;THE WORLD
-003;Syria
-004;Mahatma Gandhi
-004;1947
-004;!"£$
-004;1946
-005;Santa Claus
-005;Krushnev
-005;Kenedy
-005;Nicholas II
-006;Respiration
-006;Photosynthesis
-006;Excretion
-006;Breathing
-007;F = ma
-007;F = Ma
-007;Bond, James Bond
-007;T = NT
-008;9.8
-008;9.9999999999
-008;2.6
-008;10.1
-009;Reproduction
-009;Photosynthesis
-009;Protein Synthesis
-009;Respiration
-010;They have an equal number of neutrons and electrons
-010;They have an equal number of protons and electron
-010;They have no feelings
-010;The are mostly empty space
-011;π
-011;#
-011;Pie
-011;£
-012;2
-012;A window
-012;3
-012;11
-013;A cute angle
-013;Acute angle
-013;elgna etucA
-013;Reflex angle
-014;360
-014;720
-014;One hundred and eeeeeeeeighty
-014;1080
-015;1
-015;2
-015;3
-015;68.9
+QuestionID;ChoiceID;Choice;
+001;1;1949
+001;2;666
+001;3;1917
+001;4;1914
+002;1;1783
+002;2;1666
+002;3;1914
+002;4;0 AD
+003;1;France
+003;2;Belgium
+003;3;THE WORLD
+003;4;Syria
+004;1;Mahatma Gandhi
+004;2;1947
+004;3;!"£$
+004;4;1946
+005;1;Santa Claus
+005;2;Krushnev
+005;3;Kenedy
+005;4;Nicholas II
+006;1;Respiration
+006;2;Photosynthesis
+006;3;Excretion
+006;4;Breathing
+007;1;F = ma
+007;2;F = Ma
+007;3;Bond, James Bond
+007;4;T = NT
+008;1;9.8
+008;2;9.9999999999
+008;3;2.6
+008;4;10.1
+009;1;Reproduction
+009;2;Photosynthesis
+009;3;Protein Synthesis
+009;4;Respiration
+010;1;They have an equal number of neutrons and electrons
+010;2;They have an equal number of protons and electron
+010;3;They have no feelings
+010;4;The are mostly empty space
+011;1;π
+011;2;#
+011;3;Pie
+011;4;£
+012;1;2
+012;2;A window
+012;3;3
+012;4;11
+013;1;A cute angle
+013;2;Acute angle
+013;3;elgna etucA
+013;4;Reflex angle
+014;1;360
+014;2;720
+014;3;One hundred and eeeeeeeeighty
+014;4;1080
+015;1;1
+015;2;2
+015;3;3
+015;4;68.9

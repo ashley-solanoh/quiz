@@ -10,14 +10,26 @@ class Question():
         self.answer = pAnswer
 
 class Answer():
-     def __init__(self,pQID,pCAnswer,pChoice):
+     def __init__(self,pQID,pChoiceID,pChoice):
         '''
         Constructor
         '''
         self.questionId = pQID
-        self.cAnswer = pCAnswer
+        self.choiceID = pChoiceID
         self.choice = pChoice
 
+class ChoiceObj():
+     def __init__(self,pQID,pChoiceID,pChoice):
+        '''
+        Constructor
+        '''
+        self.questionId = pQID
+        self.choiceID = pChoiceID
+        self.choice = pChoice
+        
+        
+        
+    
 
 def saveAccount( pAccName, pName, pYearG,pAge,pPassW ):
 
@@ -67,7 +79,6 @@ def getQuestions(topic):
 
 def getChoices(pQuestion, pDifficulty): 
  
-    moreChoice = True
     vChoicesList = []
     vShownChoices = []
 
@@ -75,41 +86,48 @@ def getChoices(pQuestion, pDifficulty):
     for line in choicesFile:
         fields = line.split(';')
         vQuestionID = fields[0]
-        vChoice  = fields[1]
-
-##        if (vQuestionID == Question.id && vChoice == Question.answer) 
-##          vChoicesList.append
-
-
-
-        if (vQuestionID == pQuestion.id):
+        vChoiceID  = fields[1]
+        vChoice  = fields[2]
+        
+        newChoice = ChoicesObj(vQuestionID,vChoiceID,vChoice)
+        
+        if (newChoice.questionId == pQuestion.id):
             vChoicesList.append(vChoice)
-       
-    for x in range (0,len(vChoices)):
-        if vChoicesList[x] == pQuestion.answer :
+        
+        vChoicesList
+    
+
+
+
+    for x in range (0,len(vChoicesList)):
+        print (vChoicesList[x] + ":)")
+        print (pQuestion.id + ":)")
+        if vChoicesList[x] == pQuestion.id :
+            print (vChoicesList[x] + ":)")
             vShownChoices.append(vChoice)
             vChoices.remove[x]     
 
-    vChoicesList.shuffle    
+    random.shuffle(vChoicesList)    
  
     if (pDifficulty == "easy"):
-        moreShownChoiceNum = 1
+        moreShownChoiceNum = 2
         
-        for x in range (0,moreShownChoiceNum)
+        for x in range (0,moreShownChoiceNum):
+            print(str(vChoicesList) + "HERE")
             vShownChoices.append(vChoicesList[x])
 
     elif (pDifficulty == "medium"):
-        moreShownChoiceNum = 2
-        for x in range(0,moreShownChoiceNum):
-            vShownChoices.append(vChoicesList[x])
-
-    elif (pDifficulty == "hard"):   
         moreShownChoiceNum = 3
         for x in range(0,moreShownChoiceNum):
             vShownChoices.append(vChoicesList[x])
 
+    elif (pDifficulty == "hard"):   
+        moreShownChoiceNum = 4
+        for x in range(0,moreShownChoiceNum):
+            vShownChoices.append(vChoicesList[x])
+
     
-    vShownChoices.shuffle
+    random.shuffle(vShownChoices)
    
     return vShownChoices    
 
@@ -193,7 +211,7 @@ answers = []
 for i in range (0,len(questions)):
 
     aQuestion = questions[i]
-    choices = getChoices(Question, userDifficulty)
+    choices = getChoices(aQuestion, userDifficulty)
 
     print(aQuestion.question)
     
@@ -217,7 +235,7 @@ score = 0
 for x in range (0, len(answers)):
 
     print ("-----------------------")
-    rightAnswer = answers[x].cAnswer
+    rightAnswer = answers[x].choiceID
     userAnswer = answers[x].choice
 
     print ("---" + rightAnswer + "---")
