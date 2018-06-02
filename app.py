@@ -1,3 +1,5 @@
+import random
+
 class Question():
      def __init__(self,pId,pQuestion,pAnswer):
         '''
@@ -55,6 +57,7 @@ def getQuestions(topic):
         vQuestionID = fields[1]
         vQuestion = fields[2]
         vAnswer = fields[3]
+        vAnswer = vAnswer.rstrip()
  
         if topic == vTopic:
             newQuestion = Question(vQuestionID, vQuestion, vAnswer)
@@ -62,30 +65,53 @@ def getQuestions(topic):
 
     return vQuestions
 
-def getChoices(pQuestionID, pDifficulty): 
+def getChoices(pQuestion, pDifficulty): 
  
     moreChoice = True
-    vChoices = []
+    vChoicesList = []
+    vShownChoices = []
 
     choicesFile = open("choices.csv", "r")
     for line in choicesFile:
         fields = line.split(';')
         vQuestionID = fields[0]
-        vChoice = fields[1]
+        vChoice  = fields[1]
 
-        if (vQuestionID == pQuestionID):
-            vChoices.append(vChoice)
+##        if (vQuestionID == Question.id && vChoice == Question.answer) 
+##          vChoicesList.append
+
+
+
+        if (vQuestionID == pQuestion.id):
+            vChoicesList.append(vChoice)
+       
+    for x in range (0,len(vChoices)):
+        if vChoicesList[x] == pQuestion.answer :
+            vShownChoices.append(vChoice)
+            vChoices.remove[x]     
+
+    vChoicesList.shuffle    
+ 
+    if (pDifficulty == "easy"):
+        moreShownChoiceNum = 1
         
-        if (pDifficulty == "easy" and len(vChoices) == 2):
-          return vChoices
-        if (pDifficulty == "medium" and len(vChoices) == 3):
-          return vChoices
-        if (pDifficulty == "hard" and len(vChoices) == 4):
-          return vChoices
-    return vChoices    
+        for x in range (0,moreShownChoiceNum)
+            vShownChoices.append(vChoicesList[x])
 
-score = 0
-answers = []
+    elif (pDifficulty == "medium"):
+        moreShownChoiceNum = 2
+        for x in range(0,moreShownChoiceNum):
+            vShownChoices.append(vChoicesList[x])
+
+    elif (pDifficulty == "hard"):   
+        moreShownChoiceNum = 3
+        for x in range(0,moreShownChoiceNum):
+            vShownChoices.append(vChoicesList[x])
+
+    
+    vShownChoices.shuffle
+   
+    return vShownChoices    
 
 confirm = True
 name = input("What is your name?  ")
@@ -162,11 +188,12 @@ userDifficulty = input("> ")
 questions = getQuestions(userTopic)
 print("")
 
+answers = []
 
 for i in range (0,len(questions)):
 
     aQuestion = questions[i]
-    choices = getChoices(aQuestion.id, userDifficulty)
+    choices = getChoices(Question, userDifficulty)
 
     print(aQuestion.question)
     
@@ -175,24 +202,31 @@ for i in range (0,len(questions)):
         print (" " + str(x + 1) + ") "+ choices[x])
  
     userAnswer = input("> ")
+
+    userAnswer = userAnswer.rstrip()
+    print("***" + userAnswer + "****")
     
-    answer = Answer(aQuestion.id,aQuestion.answer,userAnswer)
+    answer = Answer(aQuestion.id, aQuestion.answer, userAnswer)
 
     answers.append(answer)
-    
 
     print("")
 
+score = 0
+
 for x in range (0, len(answers)):
 
+    print ("-----------------------")
+    rightAnswer = answers[x].cAnswer
+    userAnswer = answers[x].choice
 
-    print (answers[x].cAnswer)
-   # print (answers[x].choice)
-    if answers[x].cAnswer == answers[x].choice:
-        
+    print ("---" + rightAnswer + "---")
+    print ("+++" + userAnswer + "+++")
+
+    if rightAnswer == userAnswer:
         score = score + 1
 
-
+    print ("-----------------------")
 
 if score == 5:
     
@@ -215,3 +249,4 @@ percentage = score * 20
 print ("Your score was " + str(score)  + "/5")
 print ("Your Grade was " + grade )
 print ("Your percentage was " + str(percentage) + "%") 
+
