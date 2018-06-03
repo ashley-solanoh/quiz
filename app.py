@@ -161,58 +161,58 @@ def getChoices(pQuestion, pDifficulty):
 #        strShownChoices.append(str(vShownChoices[x]))
     return vShownChoices    
 
-#confirm = True
-#name = input("What is your name?  ")
-#age = input("what is your age?  ")
-#yearG = input ("what is your year group?  ")
-#
-#accName = name[0:3] + (age)
-#passW = input("what will your password be?  ")
-#
-#passC = input("please confirm your password  ")
-#
-#if passC != passW:
-#  
-#  while confirm : 
-#    if confirm:
-#    
-#      passC = input("please type your password in again  ")
-#	
-#    else:
-#      confirm = Ture 
-#
+confirm = True
+name = input("What is your name?  ")
+age = input("what is your age?  ")
+yearG = input ("what is your year group?  ")
+
+accName = name[0:3] + (age)
+passW = input("what will your password be?  ")
+
+passC = input("please confirm your password  ")
+
+if passC != passW:
+  
+ while confirm : 
+    if confirm:
+    
+      passC = input("please type your password in again  ")
+	
+    else:
+      confirm = Ture 
+
 #save all variables on external file
-#quizData = (accName + "Stats.txt")
-#
-#
-#saveAccount( accName, name, yearG, age, passW )
-#
-#quizFile = open(quizData, "w")
-#quizFile.write (accName + "’s quizzes " + "\n")  
-#quizFile.write ("\n")
-#
-#
-#quizFile.write ("    History:" + "\n")
-#quizFile.write ("      Easy: N/A" + "\n")
-#quizFile.write ("      Medium: N/A" + "\n")
-#quizFile.write ("      Hard: N/A" + "\n")
-#quizFile.write ("\n")
-#
-#
-#quizFile.write ("    Science:" + "\n")
-#quizFile.write ("      Easy: N/A" + "\n")
-#quizFile.write ("      Medium: N/A" + "\n")
-#quizFile.write ("      Hard: N/A" + "\n")
-#quizFile.write ("\n")
-#
-#
-#quizFile.write ("    Maths:" + "\n")
-#quizFile.write ("      Easy: N/A" + "\n")
-#quizFile.write ("      Medium: N/A" + "\n")
-#quizFile.write ("      Hard: N/A" + "\n")
-#quizFile.write ("\n")
-#quizFile.close()
-#
+quizData = (accName + "Stats.txt")
+
+
+saveAccount( accName, name, yearG, age, passW )
+
+quizFile = open(quizData, "w")
+quizFile.write (accName + "’s quizzes " + "\n")  
+quizFile.write ("\n")
+
+
+quizFile.write ("    History:" + "\n")
+quizFile.write ("      Easy: N/A" + "\n")
+quizFile.write ("      Medium: N/A" + "\n")
+quizFile.write ("      Hard: N/A" + "\n")
+quizFile.write ("\n")
+
+
+quizFile.write ("    Science:" + "\n")
+quizFile.write ("      Easy: N/A" + "\n")
+quizFile.write ("      Medium: N/A" + "\n")
+quizFile.write ("      Hard: N/A" + "\n")
+quizFile.write ("\n")
+
+
+quizFile.write ("    Maths:" + "\n")
+quizFile.write ("      Easy: N/A" + "\n")
+quizFile.write ("      Medium: N/A" + "\n")
+quizFile.write ("      Hard: N/A" + "\n")
+quizFile.write ("\n")
+quizFile.close()
+
 topics = getTopics()
 
 print ("Pick a topic")
@@ -253,10 +253,12 @@ for i in range (0,len(questions)):
     userAnswer = input("> ")
 
     userAnswer = userAnswer.rstrip()
-    print("***" + userAnswer + "****")
+#   print("***" + userAnswer + "****")
     
-    answer = Answer(aQuestion.id, aQuestion.correctChoice, userAnswer)
-
+    choice = choices[int(userAnswer) - 1]
+    print (choice)
+    answer = Answer(aQuestion.id, aQuestion.correctChoice, choice.choiceID)
+    
     answers.append(answer)
 
     print("")
@@ -266,6 +268,8 @@ score = 0
 for x in range (0, len(answers)):
 
     print ("-----------------------")
+
+    
     rightAnswer = answers[x].choiceID
     userAnswer = answers[x].choice
 
