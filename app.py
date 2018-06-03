@@ -34,9 +34,10 @@ class Choice(object):
         '''
         self.questionId = pQID
         self.choiceID = pChoiceID
-    
+        self.choice = pChoice  
+ 
      def __str__(self):
-         return self.questionId + self.choiceID
+         return "Choice [questionid: " + self.questionId + ", choiceid: " + self.choiceID + ", choice:" + self.choice + "]" 
 
 
 def saveAccount( pAccName, pName, pYearG,pAge,pPassW ):
@@ -85,6 +86,10 @@ def getQuestions(topic):
 
     return vQuestions
 
+def printArray(pArray): 
+    for x in range (0,len(pArray)):
+        print (str(pArray[x]) )
+
 def getChoices(pQuestion, pDifficulty): 
  
     vChoicesList = []
@@ -96,103 +101,118 @@ def getChoices(pQuestion, pDifficulty):
         vQuestionID = fields[0]
         vChoiceID  = fields[1]
         vChoice  = fields[2]
+        vChoice = vChoice.rstrip()
         
         newChoice = Choice(vQuestionID, vChoiceID, vChoice)
         
         if (newChoice.questionId == pQuestion.id):
            vChoicesList.append(newChoice)
-           print ("This is the correct answer " + str(vChoicesList))
-      
+#          print ("This is the correct answer: " )
+#          printArray(vChoicesList)
+               
+ 
+    print("--- All choices from file ---")
+    printArray(vChoicesList)
+
     for x in range (0,len(vChoicesList)-1):
-        print ("This is the ID of the choice in the : " + vChoicesList[x].choiceID)
-        print (pQuestion.correctChoice + "This is the correct choice")
+#       print ("This is the ID of the choice in position  " + str(x) + " of vChoices: "  + str(vChoicesList[x].choiceID))
+#       print ("This is the correct choice's ID " + pQuestion.correctChoice)
         if vChoicesList[x].choiceID == pQuestion.correctChoice:
 #           print (vChoicesList[x].choiceID + ":)")
-            print("")
-            vShownChoices.append(vChoice)
+#           print("")
+            vShownChoices.append(vChoicesList[x])
             del vChoicesList[x]     
+
+#   print("--- Shownchoices: correctAnswr only ---")
+#   printArray(vShownChoices)
 
     random.shuffle(vChoicesList)    
  
     if (pDifficulty == "easy"):
         moreShownChoiceNum = 1
-        print ("Nmber of choices left to pick: " + str(moreShownChoiceNum))
-        print("")
+#       print ("Nmber of choices left to pick: " + str(moreShownChoiceNum))
+ #      print("")
  
     elif (pDifficulty == "medium"):
         moreShownChoiceNum = 2
-        print ("Nmber of choices left to pick: " + moreShownChoiceNum)
-        print("")
+#       print ("Nmber of choices left to pick: " + str(moreShownChoiceNum))
+#       print("")
 
     elif (pDifficulty == "hard"):   
         moreShownChoiceNum = 3
-        print ("Nmber of choices left to pick: " + moreShownChoiceNum)
-        print("")
+#       print ("Nmber of choices left to pick: " + str(moreShownChoiceNum))
+#       print("")
 
     for x in range(0,moreShownChoiceNum):
-        print ("These are the choices which will be shown, before a choice was added" +  str(vShownChoices))
-        print("")
-        vShownChoices.append(vChoicesList[x])
-        print ("These are the choices which will be shown, after a choice was added:" +  str(vShownChoices))
-        print("")
-
+#       print ("These are the choices which will be shown, before a choice was added")
+#       printArray(vShownChoices)
+#       print("")
+       vShownChoices.append(vChoicesList[x])
+#       print ("These are the choices which will be shown, after a choice was added:")
+#       printArray(vShownChoices)
+#       print("")
+#       printArray(vShownChoices)
     
     random.shuffle(vShownChoices)
-   
+    
+#    strShownChoices = []
+#   
+#    for x in range (0,len(vShownChoices)):
+#        strShownChoices.append(str(vShownChoices[x]))
     return vShownChoices    
 
-confirm = True
-name = input("What is your name?  ")
-age = input("what is your age?  ")
-yearG = input ("what is your year group?  ")
-
-accName = name[0:3] + (age)
-passW = input("what will your password be?  ")
-
-passC = input("please confirm your password  ")
-
-if passC != passW:
-  
-  while confirm : 
-    if confirm:
-    
-      passC = input("please type your password in again  ")
-	
-    else:
-      confirm = Ture 
-
+#confirm = True
+#name = input("What is your name?  ")
+#age = input("what is your age?  ")
+#yearG = input ("what is your year group?  ")
+#
+#accName = name[0:3] + (age)
+#passW = input("what will your password be?  ")
+#
+#passC = input("please confirm your password  ")
+#
+#if passC != passW:
+#  
+#  while confirm : 
+#    if confirm:
+#    
+#      passC = input("please type your password in again  ")
+#	
+#    else:
+#      confirm = Ture 
+#
 #save all variables on external file
-quizData = (accName + "Stats.txt")
-
-
-saveAccount( accName, name, yearG, age, passW )
-
-quizFile = open(quizData, "w")
-quizFile.write (accName + "’s quizzes " + "\n")  
-quizFile.write ("\n")
-
-
-quizFile.write ("    History:" + "\n")
-quizFile.write ("      Easy: N/A" + "\n")
-quizFile.write ("      Medium: N/A" + "\n")
-quizFile.write ("      Hard: N/A" + "\n")
-quizFile.write ("\n")
-
-
-quizFile.write ("    Science:" + "\n")
-quizFile.write ("      Easy: N/A" + "\n")
-quizFile.write ("      Medium: N/A" + "\n")
-quizFile.write ("      Hard: N/A" + "\n")
-quizFile.write ("\n")
-
-
-quizFile.write ("    Maths:" + "\n")
-quizFile.write ("      Easy: N/A" + "\n")
-quizFile.write ("      Medium: N/A" + "\n")
-quizFile.write ("      Hard: N/A" + "\n")
-quizFile.write ("\n")
-quizFile.close()
-
+#quizData = (accName + "Stats.txt")
+#
+#
+#saveAccount( accName, name, yearG, age, passW )
+#
+#quizFile = open(quizData, "w")
+#quizFile.write (accName + "’s quizzes " + "\n")  
+#quizFile.write ("\n")
+#
+#
+#quizFile.write ("    History:" + "\n")
+#quizFile.write ("      Easy: N/A" + "\n")
+#quizFile.write ("      Medium: N/A" + "\n")
+#quizFile.write ("      Hard: N/A" + "\n")
+#quizFile.write ("\n")
+#
+#
+#quizFile.write ("    Science:" + "\n")
+#quizFile.write ("      Easy: N/A" + "\n")
+#quizFile.write ("      Medium: N/A" + "\n")
+#quizFile.write ("      Hard: N/A" + "\n")
+#quizFile.write ("\n")
+#
+#
+#quizFile.write ("    Maths:" + "\n")
+#quizFile.write ("      Easy: N/A" + "\n")
+#quizFile.write ("      Medium: N/A" + "\n")
+#quizFile.write ("      Hard: N/A" + "\n")
+#quizFile.write ("\n")
+#quizFile.close()
+#
 topics = getTopics()
 
 print ("Pick a topic")
@@ -227,8 +247,8 @@ for i in range (0,len(questions)):
     
     for x in range (0,len(choices)):
 
-        currentChoiceShown = str(choices[x])
-        print (" " + str(x + 1) + ") "+ currentChoiceShown[x])
+        currentChoiceShown = choices[x]
+        print (" " + str(x + 1) + ") "+ currentChoiceShown.choice)
  
     userAnswer = input("> ")
 
