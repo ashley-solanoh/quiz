@@ -1,15 +1,20 @@
 import random
 
-class Question():
-     def __init__(self,pId,pQuestion,pAnswer):
+class Question(object):
+
+     def __init__(self,pId,pQuestion,pCorrectChoice):
         '''
         Constructor
         '''
         self.id = pId
         self.question = pQuestion
-        self.answer = pAnswer
+        self.correctChoice = pCorrectChoice
 
-class Answer():
+     def __str__(self):
+         return self.id + self.question + self.correctChoice
+
+class Answer(object):
+
      def __init__(self,pQID,pChoiceID,pChoice):
         '''
         Constructor
@@ -18,18 +23,21 @@ class Answer():
         self.choiceID = pChoiceID
         self.choice = pChoice
 
-class ChoiceObj():
+     def __str__(self):
+         return self.questionId + self.choiceID + self.choice
+
+class Choice(object):
+
      def __init__(self,pQID,pChoiceID,pChoice):
         '''
         Constructor
         '''
         self.questionId = pQID
         self.choiceID = pChoiceID
-        self.choice = pChoice
-        
-        
-        
     
+     def __str__(self):
+         return self.questionId + self.choiceID
+
 
 def saveAccount( pAccName, pName, pYearG,pAge,pPassW ):
 
@@ -68,11 +76,11 @@ def getQuestions(topic):
         vTopic = fields[0]
         vQuestionID = fields[1]
         vQuestion = fields[2]
-        vAnswer = fields[3]
-        vAnswer = vAnswer.rstrip()
+        vCorrectChoice = fields[3]
+        vCorrectChoice = vCorrectChoice.rstrip()
  
         if topic == vTopic:
-            newQuestion = Question(vQuestionID, vQuestion, vAnswer)
+            newQuestion = Question(vQuestionID, vQuestion, vCorrectChoice)
             vQuestions.append(newQuestion)
 
     return vQuestions
@@ -89,42 +97,44 @@ def getChoices(pQuestion, pDifficulty):
         vChoiceID  = fields[1]
         vChoice  = fields[2]
         
-        newChoice = ChoicesObj(vQuestionID,vChoiceID,vChoice)
+        newChoice = Choice(vQuestionID, vChoiceID, vChoice)
         
         if (newChoice.questionId == pQuestion.id):
-            vChoicesList.append(vChoice)
-        
-        vChoicesList
-    
-
-
-
-    for x in range (0,len(vChoicesList)):
-        print (vChoicesList[x] + ":)")
-        print (pQuestion.id + ":)")
-        if vChoicesList[x] == pQuestion.id :
-            print (vChoicesList[x] + ":)")
+           vChoicesList.append(newChoice)
+           print ("This is the correct answer " + str(vChoicesList))
+      
+    for x in range (0,len(vChoicesList)-1):
+        print ("This is the ID of the choice in the : " + vChoicesList[x].choiceID)
+        print (pQuestion.correctChoice + "This is the correct choice")
+        if vChoicesList[x].choiceID == pQuestion.correctChoice:
+#           print (vChoicesList[x].choiceID + ":)")
+            print("")
             vShownChoices.append(vChoice)
-            vChoices.remove[x]     
+            del vChoicesList[x]     
 
     random.shuffle(vChoicesList)    
  
     if (pDifficulty == "easy"):
-        moreShownChoiceNum = 2
-        
-        for x in range (0,moreShownChoiceNum):
-            print(str(vChoicesList) + "HERE")
-            vShownChoices.append(vChoicesList[x])
-
+        moreShownChoiceNum = 1
+        print ("Nmber of choices left to pick: " + str(moreShownChoiceNum))
+        print("")
+ 
     elif (pDifficulty == "medium"):
-        moreShownChoiceNum = 3
-        for x in range(0,moreShownChoiceNum):
-            vShownChoices.append(vChoicesList[x])
+        moreShownChoiceNum = 2
+        print ("Nmber of choices left to pick: " + moreShownChoiceNum)
+        print("")
 
     elif (pDifficulty == "hard"):   
-        moreShownChoiceNum = 4
-        for x in range(0,moreShownChoiceNum):
-            vShownChoices.append(vChoicesList[x])
+        moreShownChoiceNum = 3
+        print ("Nmber of choices left to pick: " + moreShownChoiceNum)
+        print("")
+
+    for x in range(0,moreShownChoiceNum):
+        print ("These are the choices which will be shown, before a choice was added" +  str(vShownChoices))
+        print("")
+        vShownChoices.append(vChoicesList[x])
+        print ("These are the choices which will be shown, after a choice was added:" +  str(vShownChoices))
+        print("")
 
     
     random.shuffle(vShownChoices)
@@ -217,14 +227,15 @@ for i in range (0,len(questions)):
     
     for x in range (0,len(choices)):
 
-        print (" " + str(x + 1) + ") "+ choices[x])
+        currentChoiceShown = str(choices[x])
+        print (" " + str(x + 1) + ") "+ currentChoiceShown[x])
  
     userAnswer = input("> ")
 
     userAnswer = userAnswer.rstrip()
     print("***" + userAnswer + "****")
     
-    answer = Answer(aQuestion.id, aQuestion.answer, userAnswer)
+    answer = Answer(aQuestion.id, aQuestion.correctChoice, userAnswer)
 
     answers.append(answer)
 
