@@ -310,12 +310,20 @@ def quizSetUp(accName):
     userScoreInput = open('userScores.txt', "w")
     userScoreInput.write(str(accName) + ";" + str(userTopic) + ";" + str(userDifficulty) + ";" + str(score))
     userScoreInput.close
-    return userScoreInput
+    
 
 def overallAvg():
+    quizesTaken = 0
+    totalScore = 0
+
+    userScoreInput = open('userScores.txt', "w") 
+    for line in userScoreInput:
+        fields = line.split(';')
+        totalScore = totalScore + fields[4]
+        quizesTaken = quizesTaken + 1
     
-    for line in 
-  
+    avgScore = totalScore/quizesTaken    
+    print("The average score for all of the quizes taken so far is :" + avgSCore)
 
 
 
@@ -335,7 +343,7 @@ while (test == 0):
         print("Here we go!")
         print("")
         accName = createAccount()
-        average = quizSetUp(accName)
+        quizSetUp(accName)
         break;
     elif (choice == 2):
        print("Select an Account")
