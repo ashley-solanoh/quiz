@@ -1,5 +1,7 @@
 import random
 
+test = 0;
+ 
 class Question(object):
 
      def __init__(self,pId,pQuestion,pCorrectChoice):
@@ -111,8 +113,8 @@ def getChoices(pQuestion, pDifficulty):
 #          printArray(vChoicesList)
                
  
-    print("--- All choices from file ---")
-    printArray(vChoicesList)
+#    print("--- All choices from file ---")
+#    printArray(vChoicesList)
 
     for x in range (0,len(vChoicesList)-1):
 #       print ("This is the ID of the choice in position  " + str(x) + " of vChoices: "  + str(vChoicesList[x].choiceID))
@@ -131,7 +133,7 @@ def getChoices(pQuestion, pDifficulty):
     if (pDifficulty == "easy"):
         moreShownChoiceNum = 1
 #       print ("Nmber of choices left to pick: " + str(moreShownChoiceNum))
- #      print("")
+#      print("")
  
     elif (pDifficulty == "medium"):
         moreShownChoiceNum = 2
@@ -147,7 +149,7 @@ def getChoices(pQuestion, pDifficulty):
 #       print ("These are the choices which will be shown, before a choice was added")
 #       printArray(vShownChoices)
 #       print("")
-       vShownChoices.append(vChoicesList[x])
+        vShownChoices.append(vChoicesList[x])
 #       print ("These are the choices which will be shown, after a choice was added:")
 #       printArray(vShownChoices)
 #       print("")
@@ -161,7 +163,7 @@ def getChoices(pQuestion, pDifficulty):
 #        strShownChoices.append(str(vShownChoices[x]))
     return vShownChoices    
 
-def createAccount()
+def createAccount():
     confirm = True
     name = input("What is your name?  ")
     age = input("what is your age?  ")
@@ -174,13 +176,13 @@ def createAccount()
 
     if passC != passW:
   
-    while confirm : 
-        if confirm:
+        while confirm : 
+            if confirm:
     
-            passC = input("please type your password in again  ")
+                passC = input("please type your password in again  ")
 	
-        else:
-            confirm = Ture 
+            else:
+                confirm = Ture 
 
     #save all variables on external file
     quizData = (accName + "Stats.txt")
@@ -213,8 +215,9 @@ def createAccount()
     quizFile.write ("      Hard: N/A" + "\n")
     quizFile.write ("\n")
     quizFile.close()
+    return accName
 
-def quizSetup():
+def quizSetUp(accName):
     topics = getTopics()
 
     print ("Pick a topic")
@@ -249,21 +252,21 @@ def quizSetup():
     
         for x in range (0,len(choices)):
 
-        currentChoiceShown = choices[x]
-        print (" " + str(x + 1) + ") "+ currentChoiceShown.choice)
+            currentChoiceShown = choices[x]
+            print (" " + str(x + 1) + ") "+ currentChoiceShown.choice)
  
-    userAnswer = input("> ")
+        userAnswer = input("> ")
 
-    userAnswer = userAnswer.rstrip()
-#   print("***" + userAnswer + "****")
+        userAnswer = userAnswer.rstrip()
+    #   print("***" + userAnswer + "****")
     
-    choice = choices[int(userAnswer) - 1]
-    print (choice)
-    answer = Answer(aQuestion.id, aQuestion.correctChoice, choice.choiceID)
+        choice = choices[int(userAnswer) - 1]
+        print (choice)
+        answer = Answer(aQuestion.id, aQuestion.correctChoice, choice.choiceID)
     
-    answers.append(answer)
+        answers.append(answer)
 
-    print("")
+        print("")
 
     score = 0
 
@@ -300,27 +303,52 @@ def quizSetup():
         grade = "F"
 
     percentage = score * 20
-
     print ("Your score was " + str(score)  + "/5")
     print ("Your Grade was " + grade )
     print ("Your percentage was " + str(percentage) + "%") 
+    
+    userScoreInput = open('userScores.txt', "w")
+    userScoreInput.write(str(accName) + ";" + str(userTopic) + ";" + str(userDifficulty) + ";" + str(score))
+    userScoreInput.close
+    return userScoreInput
 
-test = 0
+def overallAvg():
+    
+    for line in 
+  
 
-print (" 1) select a quiz ")
-print (" 2) view results  ")
-print (" 3) exit program  ")
+
+
+accName = createAccount()
+quizSetUp(accName)
+
+print (" 1) create an account ")
+print (" 2) select account    ")
+print (" 3) select a quiz     ")
+print (" 4) view results      ")
+print (" 5) exit program      ")
 
 choice = int(input("choose a numbered option "))
 
 while (test == 0):
     if (choice == 1):
-        print("Welcome to the quiz menu!\n");
-        test =1
+        print("Here we go!")
+        print("")
+        accName = createAccount()
+        average = quizSetUp(accName)
+        break;
     elif (choice == 2):
-        print("Look at these overall results!\n")
-        test =1
+       print("Select an Account")
+       print("")
     elif (choice == 3):
+        print("Welcome to the quiz menu!\n")
+        quizSetUp() 
+        test =1
+    elif (choice == 4):
+        print("Look at these overall results!\n")
+        
+        test =1
+    elif (choice == 5):
         print("Exiting program")
         break
     else:
