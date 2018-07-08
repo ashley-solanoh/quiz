@@ -161,91 +161,93 @@ def getChoices(pQuestion, pDifficulty):
 #        strShownChoices.append(str(vShownChoices[x]))
     return vShownChoices    
 
-confirm = True
-name = input("What is your name?  ")
-age = input("what is your age?  ")
-yearG = input ("what is your year group?  ")
+def createAccount()
+    confirm = True
+    name = input("What is your name?  ")
+    age = input("what is your age?  ")
+    yearG = input ("what is your year group?  ")
 
-accName = name[0:3] + (age)
-passW = input("what will your password be?  ")
+    accName = name[0:3] + (age)
+    passW = input("what will your password be?  ")
 
-passC = input("please confirm your password  ")
+    passC = input("please confirm your password  ")
 
-if passC != passW:
+    if passC != passW:
   
- while confirm : 
-    if confirm:
+    while confirm : 
+        if confirm:
     
-      passC = input("please type your password in again  ")
+            passC = input("please type your password in again  ")
 	
-    else:
-      confirm = Ture 
+        else:
+            confirm = Ture 
 
-#save all variables on external file
-quizData = (accName + "Stats.txt")
-
-
-saveAccount( accName, name, yearG, age, passW )
-
-quizFile = open(quizData, "w")
-quizFile.write (accName + "’s quizzes " + "\n")  
-quizFile.write ("\n")
+    #save all variables on external file
+    quizData = (accName + "Stats.txt")
 
 
-quizFile.write ("    History:" + "\n")
-quizFile.write ("      Easy: N/A" + "\n")
-quizFile.write ("      Medium: N/A" + "\n")
-quizFile.write ("      Hard: N/A" + "\n")
-quizFile.write ("\n")
+    saveAccount( accName, name, yearG, age, passW )
+
+    quizFile = open(quizData, "w")
+    quizFile.write (accName + "’s quizzes " + "\n")  
+    quizFile.write ("\n")
 
 
-quizFile.write ("    Science:" + "\n")
-quizFile.write ("      Easy: N/A" + "\n")
-quizFile.write ("      Medium: N/A" + "\n")
-quizFile.write ("      Hard: N/A" + "\n")
-quizFile.write ("\n")
+    quizFile.write ("    History:" + "\n")
+    quizFile.write ("      Easy: N/A" + "\n")
+    quizFile.write ("      Medium: N/A" + "\n")
+    quizFile.write ("      Hard: N/A" + "\n")
+    quizFile.write ("\n")
 
 
-quizFile.write ("    Maths:" + "\n")
-quizFile.write ("      Easy: N/A" + "\n")
-quizFile.write ("      Medium: N/A" + "\n")
-quizFile.write ("      Hard: N/A" + "\n")
-quizFile.write ("\n")
-quizFile.close()
+    quizFile.write ("    Science:" + "\n")
+    quizFile.write ("      Easy: N/A" + "\n")
+    quizFile.write ("      Medium: N/A" + "\n")
+    quizFile.write ("      Hard: N/A" + "\n")
+    quizFile.write ("\n")
 
-topics = getTopics()
 
-print ("Pick a topic")
+    quizFile.write ("    Maths:" + "\n")
+    quizFile.write ("      Easy: N/A" + "\n")
+    quizFile.write ("      Medium: N/A" + "\n")
+    quizFile.write ("      Hard: N/A" + "\n")
+    quizFile.write ("\n")
+    quizFile.close()
 
-for i in range (0,len(topics)):
-    print ("  - " + topics[i])
+def quizSetup():
+    topics = getTopics()
 
-userTopic = input("> ")
+    print ("Pick a topic")
 
-print("")
+    for i in range (0,len(topics)):
+        print ("  - " + topics[i])
 
-print("Pick a Difficulty")
+    userTopic = input("> ")
+   
+    print("")
 
-difficulties = getDifficulties()
+    print("Pick a Difficulty")
 
-for i in range (0,len(difficulties)):
-    print ("  - " + difficulties[i])
+    difficulties = getDifficulties()
 
-userDifficulty = input("> ")
+    for i in range (0,len(difficulties)):
+        print ("  - " + difficulties[i])
 
-questions = getQuestions(userTopic)
-print("")
-
-answers = []
-
-for i in range (0,len(questions)):
-
-    aQuestion = questions[i]
-    choices = getChoices(aQuestion, userDifficulty)
-
-    print(aQuestion.question)
+    userDifficulty = input("> ")
     
-    for x in range (0,len(choices)):
+    questions = getQuestions(userTopic)
+    print("")
+
+    answers = []
+
+    for i in range (0,len(questions)):
+
+        aQuestion = questions[i]
+        choices = getChoices(aQuestion, userDifficulty)
+
+        print(aQuestion.question)
+    
+        for x in range (0,len(choices)):
 
         currentChoiceShown = choices[x]
         print (" " + str(x + 1) + ") "+ currentChoiceShown.choice)
@@ -263,43 +265,64 @@ for i in range (0,len(questions)):
 
     print("")
 
-score = 0
+    score = 0
 
-for x in range (0, len(answers)):
-
-    print ("-----------------------")
-
+    for x in range (0, len(answers)):
     
-    rightAnswer = answers[x].choiceID
-    userAnswer = answers[x].choice
+        print ("-----------------------")
 
-    print ("---" + rightAnswer + "---")
-    print ("+++" + userAnswer + "+++")
+        
+        rightAnswer = answers[x].choiceID
+        userAnswer = answers[x].choice
 
-    if rightAnswer == userAnswer:
-        score = score + 1
+        print ("---" + rightAnswer + "---")
+        print ("+++" + userAnswer + "+++")
 
-    print ("-----------------------")
-
-if score == 5:
+        if rightAnswer == userAnswer:
+            score = score + 1
+   
+        print ("-----------------------")
+   
+    if score == 5:
     
-    grade = "A"
+        grade = "A"
 
-elif score >= 3:
+    elif score >= 3:
 
-    grade = "B"
+        grade = "B"
 
-elif score >= 1:
+    elif score >= 1:
 
-    grade = "C"
+        grade = "C"
 
-elif score == 0:
+    elif score == 0:
 
-    grade = "F"
+        grade = "F"
 
-percentage = score * 20
+    percentage = score * 20
 
-print ("Your score was " + str(score)  + "/5")
-print ("Your Grade was " + grade )
-print ("Your percentage was " + str(percentage) + "%") 
+    print ("Your score was " + str(score)  + "/5")
+    print ("Your Grade was " + grade )
+    print ("Your percentage was " + str(percentage) + "%") 
+
+test = 0
+
+print (" 1) select a quiz ")
+print (" 2) view results  ")
+print (" 3) exit program  ")
+
+choice = int(input("choose a numbered option "))
+
+while (test == 0):
+    if (choice == 1):
+        print("Welcome to the quiz menu!\n");
+        test =1
+    elif (choice == 2):
+        print("Look at these overall results!\n")
+        test =1
+    elif (choice == 3):
+        print("Exiting program")
+        break
+    else:
+        print("Pick a valid option")
 
